@@ -105,9 +105,9 @@ const Home = () => {
                       </tbody>
                           ))}
                     </table>
+                <button className='button is-success is-fullwidth mt-2'onClick={copyTableToClipboard}>Copy Table</button>
                 </div>
                 )}
-                <button className='button is-success is-fullwidth'onClick={copyTableToClipboard}>Copy Table</button>
             </div>
         </div>
     </div>
