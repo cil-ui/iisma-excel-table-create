@@ -97,9 +97,9 @@ const Home = () => {
                                   <td>
                                     <ul>
                                       <li rowspan="3">{`1. ${eData.matkul21}`}</li>
-                                      <li rowspan="3">{`2. ${eData.matku22}`}</li>
-                                      <li rowspan="3">{`3. ${eData.matku23}`}</li>
-                                      <li rowspan="3">{`4. ${eData.matku24}`}</li>
+                                      <li rowspan="3">{`2. ${eData.matkul22}`}</li>
+                                      <li rowspan="3">{`3. ${eData.matkul23}`}</li>
+                                      <li rowspan="3">{`4. ${eData.matkul24}`}</li>
                                     </ul>
                                   </td>
                               </tr>
