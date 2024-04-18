@@ -1,38 +1,30 @@
-// import axios from 'axios';
-import React, { useState } from 'react';
-// import { Link, useNavigate } from 'react-router-dom';
+import React, { useState, useRef } from 'react';
 const XLSX = require('xlsx')
-// const baseUrl = process.env.REACT_APP_BASE_URL;
 
 const Home = () => {
     const [excelData, setExcelData] = useState([]);
-    const [fileName,setFileName] = useState(null)
-    // const [msg, setMsg] = useState('');
-    // const navigate = useNavigate();
+    const [fileName,setFileName] = useState(null);
+    const tableRef = useRef(null);
 
     const handleFile = async (e) => {
-        // const reader = new FileReader();
-        // reader.readAsBinaryString(e.target.files[0])
-        // reader.onload = (e) => {
-        //     const data = e.target.result;
-        //     const workbook = XLSX.read(data, {type: "binary"})
-        //     const worksheet = workbook.Sheets[workbook.SheetNames[0]]
-        //     const jsonData = XLSX.utils.sheet_to_json(worksheet)
-        //     setExcelData(jsonData)
-        //     console.log(excelData);
-        // }
         const file = e.target.files[0];
         setFileName(file.name);
-        // console.log(fileName);
         const data = await file.arrayBuffer();
         var workbook = XLSX.read(data)
-
         const worksheet = workbook.Sheets[workbook.SheetNames[0]]
         const jsonData = XLSX.utils.sheet_to_json(worksheet)
         setExcelData(jsonData)
     }
 
-   
+    const copyTableToClipboard = () => {
+        const selection = window.getSelection();
+        const range = document.createRange();
+        range.selectNodeContents(tableRef.current);
+        selection.removeAllRanges();
+        selection.addRange(range);
+        document.execCommand('copy');
+        selection.removeAllRanges();
+    };
 
   return (
     <div>
@@ -41,7 +33,6 @@ const Home = () => {
             <h2 className='subtitle'>Make Template with excel file</h2>
         </div>
         <div className="card is-shadowless">
-            {/* <p>{msg}</p> */}
             <div className="card-content">
                 <div className="content">
                 <h3>Parse Excel</h3>
@@ -62,9 +53,10 @@ const Home = () => {
                     </label>
                     </div>
                 </div>
-                {excelData.length >= 0 && (
+                {excelData.length > 0 && (
                     <div className='table-container'>
-                    <table className="table is-bordered is-fullwidth">
+                    <button className='button is-success mb-2'onClick={copyTableToClipboard}>Copy Table</button>
+                    <table ref={tableRef} className="table is-bordered is-fullwidth">
                         <thead>
                           <tr>
                               <th>No</th>
@@ -76,52 +68,46 @@ const Home = () => {
                         </thead>
                         {excelData.map((eData, index)=>(
                           <tbody>
-                                <tr key={index}>
-                                  <td rowspan="3">{index+1}</td>
-                                  <td rowspan="3">{eData.Nama}</td>
-                                  <td>{`1. ${eData.Univ1}`}</td>
-                                  <td>{`1. ${eData.negara1}`}</td>
-                                  <td >
-                                    <ol className='pl-4'>
-                                      <li>{eData.matkul11}</li>
-                                      <li>{eData.matkul12}</li>
-                                      <li>{eData.matkul13}</li>
-                                      <li>{eData.matkul14}</li>
-                                    </ol>
-                                  </td>
-                              </tr>
-                              
-                              <tr>
-                                  <td >{`2. ${eData.Univ2}`}</td>
-                                  <td >{`2. ${eData.negara2}`}</td>
-                                  <td >
-                                    <ol className='pl-4'>
-                                      <li>{eData.matkul21}</li>
-                                      <li>{eData.matkul22}</li>
-                                      <li>{eData.matkul23}</li>
-                                      <li>{eData.matkul24}</li>
-                                    </ol>
-                                  </td>
-                              </tr>
-                              
-                              <tr>
-                                  <td >{`3. ${eData.Univ3}`}</td>
-                                  <td >{`3. ${eData.negara3}`}</td>
-                                  <td >
-                                    <ol className='pl-4'>
-                                      <li>{eData.matkul31}</li>
-                                      <li>{eData.matkul32}</li>
-                                      <li>{eData.matkul33}</li>
-                                      <li>{eData.matkul34}</li>
-                                    </ol>
-                                  </td>
-                              </tr>
-                          </tbody>
+                          <tr key={index}>
+                              <td rowspan="3">{index+1}</td>
+                              <td rowspan="3">{eData.Nama}</td>
+                              <td>{`1. ${eData.Univ1}`}</td>
+                              <td>{`1. ${eData.negara1}`}</td>
+                              <td>
+                                  {`1. ${eData.matkul11}`}<br/>
+                                  {`2. ${eData.matkul12}`}<br/>
+                                  {`3. ${eData.matkul13}`}<br/>
+                                  {`4. ${eData.matkul14}`}<br/>
+                              </td>
+                          </tr>
+                          
+                          <tr>
+                              <td>{`2. ${eData.Univ2}`}</td>
+                              <td>{`2. ${eData.negara2}`}</td>
+                              <td>
+                                  {`1. ${eData.matkul21}`}<br/>
+                                  {`2. ${eData.matkul22}`}<br/>
+                                  {`3. ${eData.matkul23}`}<br/>
+                                  {`4. ${eData.matkul24}`}<br/>
+                              </td>
+                          </tr>
+                          
+                          <tr>
+                              <td>{`3. ${eData.Univ3}`}</td>
+                              <td>{`3. ${eData.negara3}`}</td>
+                              <td>
+                                  {`1. ${eData.matkul31}`}<br/>
+                                  {`2. ${eData.matkul32}`}<br/>
+                                  {`3. ${eData.matkul33}`}<br/>
+                                  {`4. ${eData.matkul34}`}<br/>
+                              </td>
+                          </tr>
+                      </tbody>
                           ))}
-                        
                     </table>
                 </div>
                 )}
+                <button className='button is-success is-fullwidth'onClick={copyTableToClipboard}>Copy Table</button>
             </div>
         </div>
     </div>
