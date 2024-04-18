@@ -81,42 +81,41 @@ const Home = () => {
                                   <td rowspan="3">{eData.Nama}</td>
                                   <td>{`1. ${eData.Univ1}`}</td>
                                   <td>{`1. ${eData.negara1}`}</td>
-                                  <td>
-                                    <ul>
-                                      <li rowspan="3">{`1. ${eData.matkul11}`}</li>
-                                      <li rowspan="3">{`2. ${eData.matkul12}`}</li>
-                                      <li rowspan="3">{`3. ${eData.matkul13}`}</li>
-                                      <li rowspan="3">{`4. ${eData.matkul14}`}</li>
-                                    </ul>
+                                  <td >
+                                    <ol className='pl-4'>
+                                      <li>{eData.matkul11}</li>
+                                      <li>{eData.matkul12}</li>
+                                      <li>{eData.matkul13}</li>
+                                      <li>{eData.matkul14}</li>
+                                    </ol>
                                   </td>
                               </tr>
                               
                               <tr>
                                   <td >{`2. ${eData.Univ2}`}</td>
                                   <td >{`2. ${eData.negara2}`}</td>
-                                  <td>
-                                    <ul>
-                                      <li rowspan="3">{`1. ${eData.matkul21}`}</li>
-                                      <li rowspan="3">{`2. ${eData.matkul22}`}</li>
-                                      <li rowspan="3">{`3. ${eData.matkul23}`}</li>
-                                      <li rowspan="3">{`4. ${eData.matkul24}`}</li>
-                                    </ul>
+                                  <td >
+                                    <ol className='pl-4'>
+                                      <li>{eData.matkul21}</li>
+                                      <li>{eData.matkul22}</li>
+                                      <li>{eData.matkul23}</li>
+                                      <li>{eData.matkul24}</li>
+                                    </ol>
                                   </td>
                               </tr>
                               
                               <tr>
                                   <td >{`3. ${eData.Univ3}`}</td>
                                   <td >{`3. ${eData.negara3}`}</td>
-                                  <td>
-                                    <ul>
-                                      <li rowspan="3">{`1. ${eData.matkul31}`}</li>
-                                      <li rowspan="3">{`2. ${eData.matkul32}`}</li>
-                                      <li rowspan="3">{`3. ${eData.matkul33}`}</li>
-                                      <li rowspan="3">{`4. ${eData.matkul34}`}</li>
-                                    </ul>
+                                  <td >
+                                    <ol className='pl-4'>
+                                      <li>{eData.matkul31}</li>
+                                      <li>{eData.matkul32}</li>
+                                      <li>{eData.matkul33}</li>
+                                      <li>{eData.matkul34}</li>
+                                    </ol>
                                   </td>
                               </tr>
-                             
                           </tbody>
                           ))}
                         
