@@ -1,14 +1,14 @@
-import axios from 'axios';
+// import axios from 'axios';
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+// import { Link, useNavigate } from 'react-router-dom';
 const XLSX = require('xlsx')
-const baseUrl = process.env.REACT_APP_BASE_URL;
+// const baseUrl = process.env.REACT_APP_BASE_URL;
 
 const Home = () => {
     const [excelData, setExcelData] = useState([]);
     const [fileName,setFileName] = useState(null)
-    const [msg, setMsg] = useState('');
-    const navigate = useNavigate();
+    // const [msg, setMsg] = useState('');
+    // const navigate = useNavigate();
 
     const handleFile = async (e) => {
         // const reader = new FileReader();
@@ -37,12 +37,11 @@ const Home = () => {
   return (
     <div>
         <div className='pl-2'>
-            <h1 className='title'>Add Users</h1>
-            <h2 className='subtitle'>Batch add with excel file</h2>
-            <Link to={"/users/add"} className='button is-primary mb-2'>Add a user</Link>
+            <h1 className='title'>Generate Table</h1>
+            <h2 className='subtitle'>Make Template with excel file</h2>
         </div>
         <div className="card is-shadowless">
-            <p>{msg}</p>
+            {/* <p>{msg}</p> */}
             <div className="card-content">
                 <div className="content">
                 <h3>Parse Excel</h3>
@@ -78,68 +77,49 @@ const Home = () => {
                         {excelData.map((eData, index)=>(
                           <tbody>
                                 <tr key={index}>
-                                  <td rowspan="12">{index+1}</td>
-                                  <td rowspan="12">{eData.Nama}</td>
-                                  <td rowspan="4">{`1. ${eData.Univ1}`}</td>
-                                  <td rowspan="4">{`1. ${eData.negara1}`}</td>
-                                  <td>{`1. ${eData.matkul11}`}</td>
+                                  <td rowspan="3">{index+1}</td>
+                                  <td rowspan="3">{eData.Nama}</td>
+                                  <td>{`1. ${eData.Univ1}`}</td>
+                                  <td>{`1. ${eData.negara1}`}</td>
+                                  <td>
+                                    <ul>
+                                      <li rowspan="3">{`1. ${eData.matkul11}`}</li>
+                                      <li rowspan="3">{`2. ${eData.matkul12}`}</li>
+                                      <li rowspan="3">{`3. ${eData.matkul13}`}</li>
+                                      <li rowspan="3">{`4. ${eData.matkul14}`}</li>
+                                    </ul>
+                                  </td>
                               </tr>
+                              
                               <tr>
-                                  <td>{`2. ${eData.matkul12}`}</td>
+                                  <td >{`2. ${eData.Univ2}`}</td>
+                                  <td >{`2. ${eData.negara2}`}</td>
+                                  <td>
+                                    <ul>
+                                      <li rowspan="3">{`1. ${eData.matkul21}`}</li>
+                                      <li rowspan="3">{`2. ${eData.matku22}`}</li>
+                                      <li rowspan="3">{`3. ${eData.matku23}`}</li>
+                                      <li rowspan="3">{`4. ${eData.matku24}`}</li>
+                                    </ul>
+                                  </td>
                               </tr>
+                              
                               <tr>
-                                  <td>{`3. ${eData.matkul13}`}</td>
+                                  <td >{`3. ${eData.Univ3}`}</td>
+                                  <td >{`3. ${eData.negara3}`}</td>
+                                  <td>
+                                    <ul>
+                                      <li rowspan="3">{`1. ${eData.matkul31}`}</li>
+                                      <li rowspan="3">{`2. ${eData.matkul32}`}</li>
+                                      <li rowspan="3">{`3. ${eData.matkul33}`}</li>
+                                      <li rowspan="3">{`4. ${eData.matkul34}`}</li>
+                                    </ul>
+                                  </td>
                               </tr>
-                              <tr>
-                                  <td>{`4. ${eData.matkul14}`}</td>
-                              </tr>
-                              <tr>
-                                  <td rowspan="4">{`2. ${eData.Univ2}`}</td>
-                                  <td rowspan="4">{`2. ${eData.negara2}`}</td>
-                                  <td>{`1. ${eData.matkul21}`}</td>
-                              </tr>
-                              <tr>
-                                  <td>{`2. ${eData.matkul22}`}</td>
-                              </tr>
-                              <tr>
-                                  <td>{`3. ${eData.matkul23}`}</td>
-                              </tr>
-                              <tr>
-                                  <td>{`4. ${eData.matkul24}`}</td>
-                              </tr>
-                              <tr>
-                                  <td rowspan="4">{`3. ${eData.Univ3}`}</td>
-                                  <td rowspan="4">{`3. ${eData.negara3}`}</td>
-                                  <td>{`1. ${eData.matkul31}`}</td>
-                              </tr>
-                              <tr>
-                                  <td>{`2. ${eData.matkul32}`}</td>
-                              </tr>
-                              <tr>
-                                  <td>{`3. ${eData.matkul33}`}</td>
-                              </tr>
-                              <tr>
-                                  <td>{`4. ${eData.matkul34}`}</td>
-                              </tr>
+                             
                           </tbody>
                           ))}
-                        {/* <tbody>
-                        {excelData.map((eData, index)=>(
-                            <tr key={index}>
-                                <td>{index+1}</td>
-                                <td>{eData.Nama}</td>
-                                <td>{eData.Univ1}</td>
-                                <td>{eData.negara1}</td>
-                                <td>
-                                  <ul>
-                                      <li>{`1. ${eData.matkul1}`}</li>
-                                      <li>{`2. ${eData.matkul2}`}</li>
-                                      <li>{`3. ${eData.matkul3}`}</li>
-                                  </ul>
-                                </td>
-                            </tr>
-                            ))}
-                        </tbody> */}
+                        
                     </table>
                 </div>
                 )}
